@@ -1,8 +1,21 @@
+# Ignore compiled files
+WEB-INF/classes/
 *.class
+
+# Ignore IDE/project files
+*.iml
+.idea/
+.DS_Store
+
+# Ignore log files and temporary stuff
 *.log
+*.tmp
+
+# Ignore Tomcat-specific files
+work/
+logs/
+
+
 *.war
 *.jar
-.DS_STORE
-.idea/
-*.iml
 out/
