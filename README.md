@@ -1,4 +1,3 @@
-Absolutely, let’s make your README.md clean, professional, and portfolio-ready so it stands out if an employer or recruiter checks your GitHub!
 
 📄 README.md for Jamflix (Ant Project Version)
 
@@ -79,6 +78,3 @@ Jamil
 Building Jamflix as part of an IAM & DevOps skill showcase.
 🛠️ In progress… and loving every line of it.
 
----
-
-Let me know if you want a GitHub badge header (like build passing, license, etc.) or a GIF of the app running as a visual! I can also help turn this into a project card for LinkedIn or a personal portfolio site.
