@@ -1,0 +1,51 @@
+<project name="Jamflix" default="redeploy" basedir=".">
+
+    <!-- ==== CONFIGURATION ==== -->
+    <property name="src.dir"      value="src"/>
+    <property name="web.dir"      value="WebContent"/>
+    <property name="build.dir"    value="build"/>
+    <property name="dist.dir"     value="dist"/>
+    <property name="war.file"     value="${dist.dir}/jamflix.war"/>
+    <property name="tomcat.dir"   value="/opt/tomcat9"/>
+    <property name="webapps.dir"  value="${tomcat.dir}/webapps"/>
+
+    <!-- ==== INIT: Create build and dist directories ==== -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <!-- ==== COMPILE: Java source files into build/ ==== -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath>
+                <fileset dir="${web.dir}/WEB-INF/lib">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- ==== WAR: Package WAR file from compiled code and WebContent ==== -->
+    <target name="war" depends="compile">
+        <war destfile="${war.file}" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}"/>
+            <classes dir="${build.dir}"/>
+        </war>
+    </target>
+
+    <!-- ==== DEPLOY: Copy WAR file to Tomcat webapps directory ==== -->
+    <target name="deploy" depends="war">
+        <echo message="🚀 Deploying WAR to Tomcat..."/>
+        <copy file="${war.file}" todir="${webapps.dir}"/>
+    </target>
+
+    <!-- ==== REDEPLOY: Optional — Restart Tomcat after deploying ==== -->
+    <target name="redeploy" depends="deploy">
+        <echo message="🔁 Restarting Tomcat..."/>
+        <exec executable="${tomcat.dir}/bin/shutdown.sh" failonerror="false"/>
+        <sleep seconds="3"/>
+        <exec executable="${tomcat.dir}/bin/startup.sh"/>
+    </target>
+
+</project>
