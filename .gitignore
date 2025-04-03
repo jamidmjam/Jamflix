@@ -18,4 +18,11 @@ logs/
 
 *.war
 *.jar
+
+
+buld/
+dist/
+
+§:wq
+
 out/
