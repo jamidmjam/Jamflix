@@ -10,4 +10,9 @@ public class User {
         this.password = p;
         this.group = g;
     }
+
+    // new helper method
+    public boolean isPremium() {
+        return "premium".equalsIgnoreCase(this.group);
+    }
 }
